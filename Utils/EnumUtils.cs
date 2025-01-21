@@ -1,12 +1,9 @@
 ﻿using Kudos.Coring.Constants;
-using Kudos.Coring.Enums;
-using Kudos.Coring.Reflection.Utils;
-using Kudos.Coring.Utils.Collections;
+using Kudos.Coring.Types;
 using Kudos.Coring.Utils.Numerics;
 using Kudos.Coring.Utils.Texts;
 using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 
 namespace Kudos.Coring.Utils
 {
@@ -28,7 +25,7 @@ namespace Kudos.Coring.Utils
 
         #region public static String[]? GetKeys<...>(...)
 
-        public static String[]? GetKeys<T>() where T : Enum { return GetKeys(typeof(T)); }
+        public static String[]? GetKeys<T>() where T : Enum { return GetKeys(fastTypeOf<T>.Value); }
         public static String[]? GetKeys(Enum? e)
         {
             Enum[]? ea = GetFlags(e);
@@ -46,7 +43,7 @@ namespace Kudos.Coring.Utils
 
         #region public static Int32[]? GetValues<...>(...)
 
-        public static Int32[]? GetValues<T>() where T : Enum { return GetValues(typeof(T)); }
+        public static Int32[]? GetValues<T>() where T : Enum { return GetValues(fastTypeOf<T>.Value); }
         public static Int32[]? GetValues(Enum? e)
         {
             Enum[]? ea = GetFlags(e);
@@ -66,7 +63,7 @@ namespace Kudos.Coring.Utils
 
         public static T[]? GetFlags<T>() where T : Enum
         {
-            Enum[]? ea = GetFlags(typeof(T));
+            Enum[]? ea = GetFlags(fastTypeOf<T>.Value);
             T[]? ta;
             _GetFlags(ref ea, out ta);
             return ta;
@@ -129,7 +126,7 @@ namespace Kudos.Coring.Utils
 
         //#region public static Boolean IsDefined(...)
 
-        //public static Boolean IsDefined<T>(Object? e) where T: Enum { return e != null && IsDefined(typeof(T), e); }
+        //public static Boolean IsDefined<T>(Object? e) where T: Enum { return e != null && IsDefined(fastTypeOf<T>.Value, e); }
         //public static Boolean IsDefined(Enum? e, Object? o) { return e != null && IsDefined(e.GetType(), o); }
         //public static Boolean IsDefined(Type? t, Object? o)
         //{
@@ -143,7 +140,7 @@ namespace Kudos.Coring.Utils
 
         #region public static Boolean IsValid(...)
 
-        public static Boolean IsValid<T>(Object? e) where T : Enum { return e != null && IsValid(typeof(T), e); }
+        public static Boolean IsValid<T>(Object? e) where T : Enum { return e != null && IsValid(fastTypeOf<T>.Value, e); }
         public static Boolean IsValid(Enum? e, Object? o) { return e != null && IsValid(e.GetType(), o); }
         public static Boolean IsValid(Type? t, Object? o) { return Parse(t, o) != null; }
 
@@ -187,8 +184,8 @@ namespace Kudos.Coring.Utils
 
         #region public static ... Parse<...>(...)
 
-        public static T Parse<T>(string? s, bool bIgnoreCase = true) where T : Enum { return ObjectUtils.Cast<T>(Parse(typeof(T), s, bIgnoreCase)); }
-        public static T Parse<T>(object? o) where T : Enum { return ObjectUtils.Cast<T>(Parse(typeof(T), o)); }
+        public static T Parse<T>(string? s, bool bIgnoreCase = true) where T : Enum { return ObjectUtils.Cast<T>(Parse(fastTypeOf<T>.Value, s, bIgnoreCase)); }
+        public static T Parse<T>(object? o) where T : Enum { return ObjectUtils.Cast<T>(Parse(fastTypeOf<T>.Value, o)); }
         public static Enum? Parse(Type? t, string? s, bool bIgnoreCase = true)
         {
             Enum? e;

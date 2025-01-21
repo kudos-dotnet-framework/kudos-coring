@@ -1,24 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Kudos.Coring.Constants;
 
 namespace Kudos.Coring.Utils.Collections
 {
     public static class HashSetUtils
     {
-        public static void IntersectWith<T>(HashSet<T>? hs0, IEnumerable<T>? hs1)
+        public static Exception? IntersectWith<T>(HashSet<T>? hs, IEnumerable<T>? enm)
         {
-            if (hs0 == null) return;
-            else if (hs1 == null) hs1 = new HashSet<T>(0);
-            hs0.IntersectWith(hs1);
+            if (hs == null || enm == null) return CException.ArgumentNullException;
+            hs.IntersectWith(enm); return null;
         }
 
-        public static void UnionWith<T>(HashSet<T>? hs0, IEnumerable<T>? hs1)
+        public static Exception? UnionWith<T>(HashSet<T>? hs, IEnumerable<T>? enm)
         {
-            if (hs0 == null || hs1 == null) return;
-            hs0.UnionWith(hs1);
+            if (hs == null || enm == null) return CException.ArgumentNullException;
+            hs.UnionWith(enm); return null;
+        }
+
+        public static Exception? ExceptWith<T>(HashSet<T>? hs, IEnumerable<T>? enm)
+        {
+            if (hs == null || enm == null) return CException.ArgumentNullException;
+            hs.ExceptWith(enm); return null;
+        }
+
+        public static Exception? SymmetricExceptWith<T>(HashSet<T>? hs, IEnumerable<T>? enm)
+        {
+            if (hs == null || enm == null) return CException.ArgumentNullException;
+            hs.SymmetricExceptWith(enm); return null;
         }
     }
 }

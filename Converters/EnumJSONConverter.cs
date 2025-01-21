@@ -6,7 +6,7 @@ using Kudos.Coring.Enums;
 
 namespace Kudos.Coring.Converters
 {
-    public class EnumJSONConverter<T> : JsonConverter<T>
+    public sealed class EnumJSONConverter<T> : JsonConverter<T>
         where T : Enum
     {
         private readonly EEJCWorksOn _ejcwo;

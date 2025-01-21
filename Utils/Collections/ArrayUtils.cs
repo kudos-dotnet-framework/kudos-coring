@@ -1,15 +1,7 @@
-﻿
-
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
-using Kudos.Coring.Constants;
 using Kudos.Coring.Reflection.Utils;
+using Kudos.Coring.Types;
 
 namespace Kudos.Coring.Utils.Collections
 {
@@ -17,13 +9,14 @@ namespace Kudos.Coring.Utils.Collections
     {
         #region Cast(...)
 
-        public static new Array Cast(Object? o) { return o as Array; }
+        public static T[]? Cast<T>(Object? o) { return o as T[]; }
+        public static Array? Cast(Object? o) { return o as Array; }
 
         #endregion
 
         #region CreateInstance<...>(...)
 
-        public static T?[]? CreateInstance<T>(int i) { return CreateInstance(typeof(T), i) as T?[]; }
+        public static T?[]? CreateInstance<T>(int i) { return CreateInstance(fastTypeOf<T>.Value, i) as T?[]; }
         //public static Object[]? CreateInstance(Type? t, int i) { if (t != null && i > -1) try { return Array.CreateInstance(t, i) as Object[]; } catch { } return null; }
         public static Array? CreateInstance(Type? t, int i) { if (t != null && i > -1) try { return Array.CreateInstance(t, i);  } catch { } return null; }
 
@@ -117,10 +110,10 @@ namespace Kudos.Coring.Utils.Collections
             a = CreateInstance(t, 1); SetValue(a, o, 0);
         }
 
-        public static T?[]? Append<T>(T? o0, T? o1) { return Append(typeof(T), o0, o1) as T?[]; }
-        public static T?[]? Append<T>(T? o0, T?[]? a1) { return Append(typeof(T), o0, a1) as T?[]; }
-        public static T?[]? Append<T>(T?[]? a0, T? o1) { return Append(typeof(T), a0, o1) as T?[]; }
-        public static T?[]? Append<T>(T?[]? a0, T?[]? a1) { return Append(typeof(T), a0, a1) as T?[]; }
+        public static T?[]? Append<T>(T? o0, T? o1) { return Append(fastTypeOf<T>.Value, o0, o1) as T?[]; }
+        public static T?[]? Append<T>(T? o0, T?[]? a1) { return Append(fastTypeOf<T>.Value, o0, a1) as T?[]; }
+        public static T?[]? Append<T>(T?[]? a0, T? o1) { return Append(fastTypeOf<T>.Value, a0, o1) as T?[]; }
+        public static T?[]? Append<T>(T?[]? a0, T?[]? a1) { return Append(fastTypeOf<T>.Value, a0, a1) as T?[]; }
         public static Array? Append(Type? t, Object? o0, Array? a1)
         {
             Array? a0; _ToArray(ref t, ref o0, out a0);

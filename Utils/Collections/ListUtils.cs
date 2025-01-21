@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Kudos.Coring.Constants;
 using Kudos.Coring.Reflection.Utils;
+using Kudos.Coring.Types;
 
 namespace Kudos.Coring.Utils.Collections
 {
     public static class ListUtils
     {
+        #region public static ... Cast<...>(...)
+
+        public static List<T>? Cast<T>(Object? o) { return o as List<T>; }
+        public static IList? Cast(Object? o) { return o as IList; }
+
+        #endregion
+
         #region public static Boolean IsValidIndex(...)
 
         public static Boolean IsValidIndex<T>(List<T>? l, Int32 i) { return CollectionUtils.IsValidIndex(l, i); }
@@ -42,7 +47,7 @@ namespace Kudos.Coring.Utils.Collections
 
         public static Type? GetArgumentType(IList? l) { return GetArgumentType(TypeUtils.Get(l)); }
         public static Type? GetArgumentType<T>(IList<T>? l) { return GetArgumentType(TypeUtils.Get(l)); }
-        public static Type? GetArgumentType<T>() where T : IList { return GetArgumentType(typeof(T)); }
+        public static Type? GetArgumentType<T>() where T : IList { return GetArgumentType(fastTypeOf<T>.Value); }
         public static Type? GetArgumentType(Type? t)
         {
             return

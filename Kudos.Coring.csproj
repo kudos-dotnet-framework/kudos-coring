@@ -23,4 +23,10 @@
         <WarningLevel>0</WarningLevel>
     </PropertyGroup>
 
+    <ItemGroup>
+      <None Remove="Utils\Collections\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Utils\Collections\" />
+    </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Kudos.Coring.Constants
+namespace Kudos.Coring.Utils
 {
     /// <author>
     /// Pietro Terracciano

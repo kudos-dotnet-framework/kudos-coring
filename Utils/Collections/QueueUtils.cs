@@ -1,33 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using Kudos.Coring.Constants;
+using Kudos.Coring.Types;
 
 namespace Kudos.Coring.Utils.Collections
 {
 	public static class QueueUtils
 	{
-		public static Boolean TryDequeue<R>(Queue<R?>? q, out R? o)
+		public static SmartResult<Boolean?> TryDequeue<R>(Queue<R?>? q, out R? o)
 		{
-			if (q != null)
-				try { return q.TryDequeue(out o); } catch { }
-
-			o = default(R);
-			return false;
+            if (q == null) { o = default; return SmartResult<Boolean?>.ArgumentNullException; }
+            try { return new SmartResult<bool?>(q.TryDequeue(out o)); }
+            catch (Exception exc) { o = default; return new SmartResult<bool?>(exc); }
 		}
 
-        public static R? Dequeue<R>(Queue<R?>? q)
+        public static SmartResult<R?> Dequeue<R>(Queue<R?>? q)
         {
-			R? o; TryDequeue<R>(q, out o);
-			return o;
+            R? o;
+
+            SmartResult<Boolean?>
+                sr = TryDequeue<R>(q, out o);
+
+            return
+                sr.Exception == null
+                    ? new SmartResult<R?>(o)
+                    : new SmartResult<R?>(sr.Exception);
         }
 
-        public static Boolean Enqueue<R>(Queue<R?>? q, R? o)
+        public static Exception? Enqueue<R>(Queue<R?>? q, R? o)
         {
-            if (q != null)
-                try { q.Enqueue(o); return true; } catch { }
-
-            o = default(R);
-            return false;
+            if (q == null) return CException.ArgumentNullException;
+            try { q.Enqueue(o); return null; }
+            catch (Exception exc) { return exc; }
         }
     }
 }
-

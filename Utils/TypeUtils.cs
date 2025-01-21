@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Kudos.Coring.Constants;
-using Kudos.Coring.Reflection.Utils;
 using Kudos.Coring.Utils.Collections;
 
 namespace Kudos.Coring.Utils
@@ -13,8 +8,9 @@ namespace Kudos.Coring.Utils
     {
         public static Type? Get(Object? o)
         {
-            if (o == null) return null;
-            Type? t = o as Type; return t != null ? t : o.GetType();
+            Type? t = o as Type;
+            if (t != null) return t;
+            return o != null ? o.GetType() : null;
         }
 
         #region public static Boolean IsPrimitive(...)

@@ -9,7 +9,6 @@ using Kudos.Coring.Utils.Texts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Dynamic;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -1847,6 +1846,11 @@ namespace Kudos.Coring.Reflection.Utils
                 sb.Remove(sb.Length - 1, 1);
 
             s = sb.ToString();
+        }
+
+        internal static object GetInterface(Type? t, object list)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
