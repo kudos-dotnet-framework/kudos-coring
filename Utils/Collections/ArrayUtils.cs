@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Kudos.Coring.Reflection.Utils;
+using Kudos.Coring.Reflecting.Utils;
 using Kudos.Coring.Types;
 
 namespace Kudos.Coring.Utils.Collections

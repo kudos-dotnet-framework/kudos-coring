@@ -1,7 +1,6 @@
 ﻿using Kudos.Coring.Constants;
-using Kudos.Coring.Reflection.Constants;
-using Kudos.Coring.Reflection.Types;
-using Kudos.Coring.Types;
+using Kudos.Coring.Reflecting.Constants;
+using Kudos.Coring.Reflecting.Types;
 using Kudos.Coring.Utils;
 using Kudos.Coring.Utils.Collections;
 using Kudos.Coring.Utils.Numerics;
@@ -15,7 +14,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kudos.Coring.Reflection.Utils
+namespace Kudos.Coring.Reflecting.Utils
 {
     public static class ReflectionUtils
     {
@@ -1064,13 +1063,13 @@ namespace Kudos.Coring.Reflection.Utils
 
         #endregion
 
-        #region internal static ...
+        //#region internal static ...
 
-        internal static void RegisterTokenizedObject(TokenizedObject to)
-        {
-        }
+        //internal static void RegisterTokenizedObject(TokenizedObject to)
+        //{
+        //}
 
-        #endregion
+        //#endregion
 
         #region private static ...
 

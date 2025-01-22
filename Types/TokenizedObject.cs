@@ -1,5 +1,5 @@
 ﻿using Kudos.Coring.Interfaces;
-using Kudos.Coring.Reflection.Utils;
+using Kudos.Coring.Reflecting.Utils;
 using System;
 using System.Text.Json.Serialization;
 
@@ -21,15 +21,15 @@ namespace Kudos.Coring.Types
 
         [JsonIgnore]
         public Int32 Token { get; private set; }
-        
-        public TokenizedObject()
-        {
-            lock(_lck)
-            {
-                Token = ++__i;
-                ReflectionUtils.RegisterTokenizedObject(this);
-            }
-        }
+
+        //public TokenizedObject()
+        //{
+        //    lock(_lck)
+        //    {
+        //        Token = ++__i;
+        //        ReflectionUtils.RegisterTokenizedObject(this);
+        //    }
+        //}
 
         public override bool Equals(object? o)
         {

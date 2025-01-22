@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Kudos.Coring.Reflection.Constants
+namespace Kudos.Coring.Reflecting.Constants
 {
     internal static class CClausole
     {
-        public static readonly String
+        internal static readonly String
             SetPrefixOfHideBySig = "set_",
             GetPrefixOfHideBySig = "get_";
     }

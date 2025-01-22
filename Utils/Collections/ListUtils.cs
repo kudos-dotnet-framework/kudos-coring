@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Kudos.Coring.Constants;
-using Kudos.Coring.Reflection.Utils;
+using Kudos.Coring.Reflecting.Utils;
 using Kudos.Coring.Types;
 
 namespace Kudos.Coring.Utils.Collections
